@@ -1,0 +1,17 @@
+{
+	"content_scripts":[
+		{
+			"matches": ["http://*/*"],
+			"js":["content_script.js"],
+			"css":["content_script.css"]
+		}
+	],
+	"description":"",
+	"manifest_version": 2,
+	"name":"qualitynews",
+	"permissions":[
+		"activeTab",
+		"http://parewalabs.com:5000/whois"
+	],
+	"version":"0.1"
+}

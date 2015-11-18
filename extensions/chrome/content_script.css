@@ -1,0 +1,37 @@
+#parewalabs-qualitynews-wrapper{
+	font-family: sans-serif;
+	font-size: 14px;
+	line-height: 30px;
+	border: 0;
+	margin: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 100000;
+	border-bottom: 1px solid #aaa;
+	color: white;
+	cursor: pointer;
+}
+#parewalabs-qualitynews-wrapper #qualitynews-message{
+	text-align: center;
+	padding: 10px;
+}
+#parewalabs-qualitynews-wrapper .qualitynews-info{
+	background-color: rgb(255, 10, 10);
+	color: white;
+}
+#parewalabs-qualitynews-wrapper .qualitynews-warning{
+	background-color: rgb(255, 10, 10);
+	color: white;
+	font-size: 1.2em;
+}
+#parewalabs-qualitynews-wrapper .qualitynews-critical{
+	background-color: rgb(255, 10, 10);
+	color: white;
+}
+#parewalabs-qualitynews-wrapper #qualitynews-close{
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 10px 30px;
+	cursor: pointer;
+}

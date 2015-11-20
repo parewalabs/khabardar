@@ -1,3 +1,6 @@
 {
-	"MsgInvalidDate": "This page is less than a year old. You might want to verify the information on this page on other trusted sources."
+	"MsgInvalidDate": "This page is less than a year old. You might want to verify the information on this page on other sources.",
+	"MsgBlacklistedSite": "The page is known to have weak trustworthiness. You might want to verify the information on this page on other sources.",
+	"MsgUnverifiedIdentity": "The page is known to have weak trustworthiness. You might want to verify the information on this page on other sources.",
+	"ServerError": "We are experiencing technical issues. Don't worry, the server will be up soon."
 }

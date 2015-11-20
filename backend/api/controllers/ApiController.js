@@ -4,50 +4,49 @@
  * @description :: Server-side logic for managing apis
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-module.exports = {
+var ApiController = {
 	/**
-	 * 1. Extract root domain and ending (e.g. google.com) by removing:
-	 * 		- any protocol: http, https, ftp, ...
-	 * 		- the 'www'
-	 * 		- anything after the main domain: /..., ?..., #...
-	 * 2. Get whois information for the domain
-	 * @param {string} domain
+	 * Main entry point. Go through priority list. Abort if check is positive.
+	 *
+	 * Priority
+	 * 0. manually/automatically muted
+	 * 1. checks blacklisted sites
+	 * 2. checks unverified ID
+	 * 3. checks website age (uses whois)
+	 *
+	 * The catch-block is executed when some of the checking blocks reports positively.
+	 * In that case, sets message depending on errorType and sends it to client.
 	 */
-	whois: function(req, res){
-		var moment = require('moment');
-		var whois = require('whois');
-		var data = req.body;
-		console.log(data);
-		var pageurl = data.pageurl;
-		if (pageurl.indexOf('//') > -1)
-			pageurl = pageurl.split('//')[1];
-		pageurl = pageurl.replace('www.', '');
-		var domain = pageurl.split(/[/?#]/)[0];
-
-		var lookupInfo = {};
-		whois.lookup(domain, function (err, data) {
-			var fields = data.split(/\r?\n/g);
-			for (var i = 0; i < fields.length; i++) {
-				if (fields[i].indexOf('Domain Name:') > -1){
-					var domain_name = fields[i].split(':')[1].trim();
-					lookupInfo['domain_name'] = domain_name;
-				}
-				else if (fields[i].indexOf('Creation Date:') > -1){
-					var now = moment();
-					var creation_date_str = fields[i].split(':')[1].split('T')[0].trim();
-					lookupInfo['creation_date'] = creation_date_str;
-					var creationDate = moment(creation_date_str);
-					var dateIsValid = now.diff(creationDate, 'years', true) >= 1;
-
-					lookupInfo['date_is_valid'] = dateIsValid;
-					lookupInfo['message'] = dateIsValid ? '' : res.i18n('MsgInvalidDate');
-					// lookupInfo['message'] = 'testing 123 <a href="http://www.google.com">asdf</a>';
-					// lookupInfo['date_is_valid'] = false;
-
-					break;
-				}
+	entry: function(req, res){
+		// Initial data
+		var rootDomain = ApiService.extractDomainFromUrl(req.body.pageurl);
+		var obj = {
+			data: {
+				"domain_name": rootDomain
+			},
+			response: {
+				"message": ""
 			}
-			res.send(lookupInfo);
+		}
+
+		// Priority pipeline
+		ApiService.checkBlacklistedSite(obj)
+		.then(function (obj){
+			return ApiService.checkUnverifiedIdentity(obj);
+		})
+		.then(function (obj){
+			return ApiService.checkInvalidDate(obj);
+		})
+		.then(function (obj){
+			res.json(obj.response);
+		})
+		.catch(function (obj) {
+			obj.response.message = res.i18n(obj.data.errorType);
+			if (typeof obj.response.message === undefined)
+				obj.response.message = res.i18n('ServerError');
+			res.json(obj.response);
 		});
 	}
 };
+
+module.exports = ApiController;

@@ -13,5 +13,9 @@ module.exports.bootstrap = function(cb) {
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+
+	var NodeCache = require('node-cache');
+	sails.config.cache = new NodeCache({ stdTTL:86400, checkperiod:100000 });
+
+	cb();
 };

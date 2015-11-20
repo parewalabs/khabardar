@@ -32,7 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'post /whois':     { controller:'api', action:'whois' },
+  'post /reputation':     { controller:'api', action:'entry' },
 
   /***************************************************************************
   *                                                                          *

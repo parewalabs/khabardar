@@ -19,10 +19,32 @@ function main(){
 }
 function checkDomainMuted(domain, next_muted, next_notmuted){
 	chrome.storage.sync.get(domain, function (items){
-		if (Object.keys(items).length > 0)
-			next_muted();
-		else
-			next_notmuted();
+		if (Object.keys(items).length > 0){
+			// value is 0 <=> manually muted
+			// value > 0  <=> automatically muted and will expire
+			var expiryTimestamp = items[domain];
+			var nowTimestamp = (new Date).valueOf();
+			console.log('nowTimestamp > expiryTimestamp', nowTimestamp > expiryTimestamp);
+			if (expiryTimestamp != 0 && nowTimestamp > expiryTimestamp){
+				console.log('site now>expiry', nowTimestamp, expiryTimestamp);
+				chrome.storage.sync.remove(domain, function (){
+					next_notmuted();
+				});
+			} else {
+				console.log('site muted until', (new Date(items[domain])).toString());
+				next_muted();
+			}
+		} else {
+			console.log('first time not muted');
+			// If nothing in storage => store automatic mute for 1 day for current website
+			var data = {};
+			var val = new Date();
+			val.setDate(val.getDate() + 1);
+			data[domain] = val.valueOf();
+			chrome.storage.sync.set(data, function (){
+				next_notmuted();
+			});
+		}
 	});
 }
 /**
@@ -65,6 +87,7 @@ function showResponse(res){
 	document.getElementById('parewalabs-qualitynews-wrapper').addEventListener('click', function(){ this.style.display = 'none' });
 }
 
+// Helper functions
 function extractDomainFromUrl(url){
 	var pageurl = url;
 	if (pageurl.indexOf('//') > -1)

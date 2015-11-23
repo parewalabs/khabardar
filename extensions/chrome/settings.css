@@ -10,3 +10,9 @@ form label{
 form input[type=checkbox]{
 	cursor: pointer;
 }
+#info-muted-w{
+	display: none;
+}
+#info-muted-w.visible{
+	display: block;
+}

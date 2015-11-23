@@ -12,7 +12,21 @@ function load(){
 		};
 
 		chrome.storage.sync.get(currentDomain, function (items){
-			cboMute.checked = Object.keys(items).length;
+			if (Object.keys(items).length){
+				if (items[currentDomain] == 0){
+					cboMute.checked = true;
+				} else {
+					// In this case, the value of items[currentDomain] is in the format (new Date).valueOf()
+					var infoMutedWrapper = document.getElementById('info-muted-w');
+					var infoMutedUntil = document.getElementById('info-muted-until');
+					var date = new Date(items[currentDomain]);
+					var datestr = date.toDateString() +' '+ date.toLocaleTimeString();
+					infoMutedUntil.innerHTML = datestr;
+					infoMutedWrapper.setAttribute('class', 'visible');
+				}
+			} else {
+				cboMute.checked = false;
+			}
 		});
 
 		// Click handlers

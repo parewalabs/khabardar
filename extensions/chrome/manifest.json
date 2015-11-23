@@ -1,7 +1,9 @@
 {
 	"browser_action":{
 		"default_icon": {
-			"38": "icon.png"
+			"16": "khabardar16.png",
+			"48": "khabardar48.png",
+			"128": "khabardar128.png"
 		},
 		"default_title": "Khabardar settings",
 		"default_popup": "settings.html"
@@ -13,9 +15,9 @@
 			"css":["content_script.css"]
 		}
 	],
-	"description":"",
+	"description":"Khabardar is a chrome extension that warns against unreliable news websites.",
 	"manifest_version": 2,
-	"name":"qualitynews",
+	"name":"khabardar",
 	"permissions":[
 		"activeTab",
 		"storage",

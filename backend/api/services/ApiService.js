@@ -27,7 +27,8 @@ module.exports = {
 	 */
 	checkBlacklistedSite: function(obj){
 		var BlacklistedDomains = [
-			'kantipath.com'
+			'kantipath.com',
+			'purbelinews.com'
 		];
 		return new Promise(function (resolve, reject){
 			if (BlacklistedDomains.indexOf(obj.data.domain_name) > -1){

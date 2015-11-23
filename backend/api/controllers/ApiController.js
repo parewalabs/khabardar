@@ -1,15 +1,12 @@
 /**
  * ApiController
- *
- * @description :: Server-side logic for managing apis
- * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 var ApiController = {
 	/**
-	 * Main entry point. Go through priority list. Abort if check is positive.
+	 * Main entry point. Go through priority list. Jump out prematurely if any of the checks is positive.
 	 *
 	 * Priority
-	 * 0. manually/automatically muted
+	 * 0. manually/automatically muted sites
 	 * 1. checks blacklisted sites
 	 * 2. checks unverified ID
 	 * 3. checks website age (uses whois)
@@ -29,7 +26,7 @@ var ApiController = {
 			}
 		}
 
-		// Priority pipeline
+		// Pipeline
 		ApiService.checkBlacklistedSite(obj)
 		.then(function (obj){
 			return ApiService.checkUnverifiedIdentity(obj);

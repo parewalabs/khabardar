@@ -36,7 +36,6 @@ function checkDomainMuted(domain, next_muted, next_notmuted){
 			var expiryTimestamp = items[domain];
 			var nowTimestamp = (new Date).valueOf();
 			if (expiryTimestamp != 0 && nowTimestamp > expiryTimestamp){
-				console.log('site now>expiry', nowTimestamp, expiryTimestamp);
 				chrome.storage.sync.remove(domain, function (){
 					next_notmuted();
 				});
@@ -65,7 +64,6 @@ function getReputation(url, callback) {
 	xhr.open("POST", apiUrl, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function(){
-		console.log('onreadystatechange', xhr);
 		if (xhr.status == 200){
 			if (xhr.readyState == 4){
 				var parsedResponse = JSON.parse(xhr.responseText);
@@ -85,6 +83,10 @@ function getReputation(url, callback) {
 function showResponse(res){
 	if (typeof res.message == 'undefined'){
 		console.log('Khabardar: got undefined message. Not displaying that.');
+		return;
+	}
+	else if (res.message == ""){
+		console.log('Khabardar: got empty message.');
 		return;
 	}
 

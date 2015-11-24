@@ -1,3 +1,9 @@
+### Quick links
+[Download extension](https://chrome.google.com/webstore/detail/khabardar/gkjfjhoggjmlbdocpfgfbpaifmdegjim) |
+[Trello board](https://trello.com/b/qYLIPuEC) | [Googlegroups forum](https://groups.google.com/forum/#!forum/khabardar-extension)
+
+- - -
+
 # 1. Reliable Nepali news
 Khabardar is a native chrome extension that warns against unreliable news websites by displaying a popup in the top of the browser window.
 
@@ -7,11 +13,7 @@ The only job of the extension is to call the API on every page load and display 
 Dissecting the `manifest.json` file:
 
 	"browser_action":{
-		"default_icon": {
-			"16": "khabardar16.png",
-			"48": "khabardar48.png",
-			"128": "khabardar128.png"
-		},
+		"default_icon": "khabardar128.png",
 		"default_title": "Khabardar settings",
 		"default_popup": "settings.html"
 	}

@@ -49,10 +49,11 @@ Backend written in [sails.js](http://sailsjs.org/)
 
 ### important files:
 
-* `config/routes.js` A single route "POST /reputation" used by the extension. Sends and received json.
+* `config/routes.js` A single route "POST /reputation" used by the extension. Sends and receives json.
 * `api/controllers/ApiController.js` Defines the priority in which checks are performed for the current website. Check first against the blacklist, then against the "unreputable" list, then check for too young age of website.
 * `api/services/ApiService.js` Each "check" is an independent blackbox, so that it can be run in any order or stack onto each other.
 * `config/locales/en.json` Defines messages to be sent to, and displayed by, the client. This prepares the app for messages not only in English, if the Accept-Header tells so. More on [locales](http://sailsjs.org/documentation/concepts/internationalization/locales).
+* `config/bootstrap.js` Starts the cache on every server restart.
 
 ### the blackbox approach:
 As the number of blackbox filters will grow, this approach enables scalability.

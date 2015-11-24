@@ -6,9 +6,9 @@ var ApiController = {
 	 * Main entry point. Go through priority list. Jump out prematurely if any of the checks is positive.
 	 *
 	 * Priority
-	 * 0. manually/automatically muted sites
+	 * 0. checks whitelisted sites
 	 * 1. checks blacklisted sites
-	 * 2. checks unverified ID
+	 * 2. checks unverified ID (blogging sites)
 	 * 3. checks website age (uses whois)
 	 *
 	 * The catch-block is executed when some of the checking blocks reports positively.

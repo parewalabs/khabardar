@@ -25,7 +25,7 @@ module.exports = {
 		return pageurl.split(/[/?#]/)[0];
 	},
 	/**
-	 * Manual whitelist
+	 * Manual whitelisting
 	 */
 	checkWhitelistedSite: function(obj){
 		var WhitelistedDomains = [

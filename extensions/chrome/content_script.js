@@ -43,10 +43,10 @@ function checkDomainMuted(domain, next_muted, next_notmuted){
 				next_muted();
 			}
 		} else {
-			// If nothing in storage => store automatic mute for 24h for current domain
+			// If nothing in storage => store automatic mute for 14 days for current domain
 			var data = {};
 			var val = new Date();
-			val.setDate(val.getDate() + 1);
+			val.setDate(val.getDate() + 14);
 			data[domain] = val.valueOf();
 			chrome.storage.sync.set(data, function (){
 				next_notmuted();
@@ -92,7 +92,7 @@ function showResponse(res){
 	}
 
 	var htmlResponseInner = "<div id='parewalabs-qualitynews-wrapper'> <div class='{class}' id='qualitynews-message'>{message}</div> <div id='qualitynews-close'>X</div> <img src='https://raw.githubusercontent.com/parewalabs/khabardar/master/extensions/chrome/khabardar48.png' alt='Khabardar' id='qualitynews-icon' /> </div>";
-	htmlResponseInner = htmlResponseInner.replace('{class}', res.date_is_valid ? 'qualitynews-info' : 'qualitynews-warning');
+	htmlResponseInner = htmlResponseInner.replace('{class}', 'qualitynews-warning');
 	htmlResponseInner = htmlResponseInner.replace('{message}', res.message);
 
 	var htmlResponse = document.createElement('div');

@@ -88,10 +88,42 @@ The function takes in an `obj` and returns the same `obj`, possibly with altered
 The behavior is the same for all blackboxes: on failure, an errorType is set and the blackbox is "rejected", otherwise it is "resolved". The errorType is a key in the locale file which translates into a message for the user.
 
 # 2. Use
-To try it out, just install the extension from the [Chrome Webstore](https://chrome.google.com/webstore/detail/khabardar/gkjfjhoggjmlbdocpfgfbpaifmdegjim). To contribute, clone/check out the code.
+To try it out, just install the extension from the [Chrome Webstore](https://chrome.google.com/webstore/detail/khabardar/gkjfjhoggjmlbdocpfgfbpaifmdegjim) and visit some sites.
 
-When developing, you can either use the live version of the api, or develop with a local copy of the backend. For the local copy, you will need to install [node.js v4](https://nodejs.org/en/download/package-manager/) or higher. To develop the extension, the [chrome extension tutorial](https://developer.chrome.com/extensions) is a good start.
+# 3. Develop
+To contribute, clone/check out the code from `https://github.com/parewalabs/khabardar`. Don't forget to have a look at what's hot in our issue tracker on [Trello](https://trello.com/b/qYLIPuEC). If you have any questions, ping us in [googlegroups](https://groups.google.com/forum/#!forum/khabardar-extension).
 
-# 3. Get social
-Talk with us on [googlegroups](https://groups.google.com/forum/#!forum/khabardar-extension)  
-Work with us using the [Trello](https://trello.com/b/qYLIPuEC) issue tracker
+## 3.1 Developing the extension
+This means that you will use the live version of the api (and that is great). To develop the extension, the [chrome extension tutorial](https://developer.chrome.com/extensions) is a good start.
+
+To try your changes first time in the browser:
+
+1. goto `chrome://extensions`
+2. enable "Developer mode" in upper right corner
+3. click "Load unpacked extension"
+4. select the `khabardar/extensions/chrome` folder
+
+Et voilà, you have just loaded the extension. Now, after making any changes to the extension code:
+
+1. goto `chrome://extensions`
+2. click "Reload" on the extension
+
+## 3.2 Developing the backend
+This means that you will develop with a local copy of the backend. For the local copy to run, you will need to install [node.js v4](https://nodejs.org/en/download/package-manager/) or higher.
+
+Below is the folder structure, with the most used folders and files marked for the backend.
+
+	khabardar/
+		backend/
+			...
+			api/
+			config/
+			app.js
+			...
+		extensions/
+			chrome/
+				...
+
+A typical workflow would be to first start the server with `cd khabardar/backend && nodemon app.js` and then change the code in either `backend/` or `chrome/`. The npm module `nodemon` tracks any changes you make to the code and restarts the server.
+
+To host the extension for a longer period of time, use the npm module `forever` like so `forever start app.js`.

@@ -23,6 +23,21 @@ module.exports = {
 		return pageurl.split(/[/?#]/)[0];
 	},
 	/**
+	 * Manual whitelist
+	 */
+	checkWhitelistedSite: function(obj){
+		var WhitelistedDomains = [
+			'startupsinnepal.com'
+		];
+		return new Promise(function (resolve, reject){
+			if (WhitelistedDomains.indexOf(obj.data.domain_name) > -1){
+				obj.data.errorType = 'MsgWhitelistedSite';
+				return reject(obj);
+			}
+			resolve(obj);
+		});
+	},
+	/**
 	 * Manual blacklisting
 	 */
 	checkBlacklistedSite: function(obj){

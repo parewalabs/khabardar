@@ -76,8 +76,9 @@ function getReputation(url, callback) {
 	xhr.send(postData);
 }
 /**
- * 1. Create message
- * 2. Add to body
+ * 1. Don't display anything if message is undefined or empty. The rather strange res.message == " " check is because setting an empty message in config/locales/en.json doesn't work, so I set something similar to empty. This is happening e.g. for whitelisted sites.
+ * 2. Create a stylized html message
+ * 3. Add to body
  * @param  {json} res The server response
  */
 function showResponse(res){
@@ -85,7 +86,7 @@ function showResponse(res){
 		console.log('Khabardar: got undefined message. Not displaying that.');
 		return;
 	}
-	else if (res.message == ""){
+	else if (res.message == "" || res.message == " "){
 		console.log('Khabardar: got empty message.');
 		return;
 	}

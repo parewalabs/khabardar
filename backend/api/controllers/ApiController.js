@@ -27,7 +27,10 @@ var ApiController = {
 		}
 
 		// Pipeline
-		ApiService.checkBlacklistedSite(obj)
+		ApiService.checkWhitelistedSite(obj)
+		.then(function (obj){
+			return ApiService.checkBlacklistedSite(obj);
+		})
 		.then(function (obj){
 			return ApiService.checkUnverifiedIdentity(obj);
 		})

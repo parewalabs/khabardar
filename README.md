@@ -89,3 +89,7 @@ The behavior is the same for all blackboxes: on failure, an errorType is set and
 To try it out, just install the extension from the [Chrome Webstore](https://chrome.google.com/webstore/detail/khabardar/gkjfjhoggjmlbdocpfgfbpaifmdegjim). To contribute, clone/check out the code.
 
 When developing, you can either use the live version of the api, or develop with a local copy of the backend. For the local copy, you will need to install [node.js v4](https://nodejs.org/en/download/package-manager/) or higher. To develop the extension, the [chrome extension tutorial](https://developer.chrome.com/extensions) is a good start.
+
+# 3. Get social
+Talk with us on [googlegroups](https://groups.google.com/forum/#!forum/khabardar-extension)  
+Work with us using the [Trello](https://trello.com/b/qYLIPuEC) issue tracker

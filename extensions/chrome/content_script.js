@@ -91,7 +91,7 @@ function showResponse(res){
 		return;
 	}
 
-	var htmlResponseInner = "<div id='parewalabs-qualitynews-wrapper'> <div class='{class}' id='qualitynews-message'>{message}</div> <div id='qualitynews-close'>X</div> </div>";
+	var htmlResponseInner = "<div id='parewalabs-qualitynews-wrapper'> <div class='{class}' id='qualitynews-message'>{message}</div> <div id='qualitynews-close'>X</div> <img src='https://raw.githubusercontent.com/parewalabs/khabardar/master/extensions/chrome/khabardar48.png' alt='Khabardar' id='qualitynews-icon' /> </div>";
 	htmlResponseInner = htmlResponseInner.replace('{class}', res.date_is_valid ? 'qualitynews-info' : 'qualitynews-warning');
 	htmlResponseInner = htmlResponseInner.replace('{message}', res.message);
 

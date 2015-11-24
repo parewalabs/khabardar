@@ -16,22 +16,28 @@
 	padding: 10px 50px;
 }
 #parewalabs-qualitynews-wrapper .qualitynews-info{
-	background-color: rgb(255, 10, 10);
+	background-color: #db3232;
 	color: white;
 }
 #parewalabs-qualitynews-wrapper .qualitynews-warning{
-	background-color: rgb(255, 10, 10);
+	background-color: #db3232;
 	color: white;
 	font-size: 1.2em;
 }
 #parewalabs-qualitynews-wrapper .qualitynews-critical{
-	background-color: rgb(255, 10, 10);
+	background-color: #db3232;
 	color: white;
 }
 #parewalabs-qualitynews-wrapper #qualitynews-close{
 	position: absolute;
 	right: 0;
 	top: 0;
-	padding: 10px 30px;
+	padding: 10px 20px;
 	cursor: pointer;
+}
+#parewalabs-qualitynews-wrapper #qualitynews-icon{
+	position: absolute;
+	top: 15px;
+	left: 20px;
+	width: 20px;
 }

@@ -16,6 +16,8 @@ module.exports = {
 	 * 	@return {string} root domain
 	 */
 	extractDomainFromUrl: function(url){
+		if (typeof url === undefined)
+			return "";
 		var pageurl = url;
 		if (pageurl.indexOf('//') > -1)
 			pageurl = pageurl.split('//')[1];

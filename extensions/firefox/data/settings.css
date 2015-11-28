@@ -1,0 +1,18 @@
+body{
+/*	width: 340px; */
+}
+h1{
+	font-size: 16px;
+}
+form label{
+	cursor: pointer;
+}
+form input[type=checkbox]{
+	cursor: pointer;
+}
+#info-muted-w{
+	display: none;
+}
+#info-muted-w.visible{
+	display: block;
+}

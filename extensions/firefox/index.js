@@ -91,7 +91,7 @@ function getDomain(url) {
 function checkDomain(tab) {
 	checkDomainMuted(tab,
 	function(tab) {
-		console.log('domain muted');
+		//console.log('domain muted');
 	},
 	function(tab) {
 		getReputation(tab, showResponse);
@@ -135,7 +135,7 @@ function getReputation(tab, callback) {
 				callback(tab, response.json);
 			}
 			else {
-				console.log('Couldn\'t make API request');
+				//console.log('Couldn\'t make API request');
 			}
 		}
 	}).post();
@@ -143,11 +143,11 @@ function getReputation(tab, callback) {
 
 function showResponse(tab, res) {
 	if (typeof res.message == 'undefined'){
-		console.log('Khabardar: got undefined message. Not displaying that.');
+		//console.log('Khabardar: got undefined message. Not displaying that.');
 		return;
 	}
 	else if (res.message == "" || res.message == " "){
-		console.log('Khabardar: got empty message.');
+		//console.log('Khabardar: got empty message.');
 		return;
 	}
 

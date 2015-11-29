@@ -1,8 +1,8 @@
 {
   "title": "Khabardar",
   "name": "khabardar",
-  "version": "0.0.1",
-  "description": "Khabardar is a firefox extension that warns against unreliable news websites.",
+  "version": "0.0.2",
+  "description": "Khabardar is a browser extension that warns against unreliable news websites.",
   "main": "index.js",
   "author": "squgeim",
   "engines": {
